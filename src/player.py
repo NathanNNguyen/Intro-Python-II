@@ -9,7 +9,7 @@ class Player:
         return {self.name}
     
     def locate(self):
-        print(f'Current room: {self.current_room}') 
+        print(f'You are now in {self.current_room}.') 
     
     def movement(self, direction):
         if direction == 'n':
