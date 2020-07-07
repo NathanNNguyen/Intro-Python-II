@@ -42,15 +42,18 @@ room['treasure'].s_to = room['narrow']
 # user = int(input("[1] Rock  [2] Paper   [3] Scissors    [9] Quit\n"))
 user = input('What is your name: ')
 player = Player(user, room['outside'])
-print('Welcome to the game! Make your movements carefully.')
+print(f'Welcome to the game {player.name}! Make your movements carefully.')
 # Write a loop that:
 while True:
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
     player.locate()
-    console = input('Movements: [n] North [s] South [w] West [e] East [q] Quit \n')
+    console = input('Choose your movements: [n] North [s] South [w] West [e] East [q] Quit \n')
     decision = player.movement(console)
-    if decision == 'n':
+    if console == 'q':
+        print('Thanks for playing!')
+        break
+    elif decision == 'n':
         print(f'Now you are in room {player.locate()}')
     elif decision == 's':
         print(f'Now you are in room {player.locate()}')
@@ -59,7 +62,6 @@ while True:
     elif decision == 'e':
         print(f'Now you are in room {player.locate()}')
 # * Waits for user input and decides what to do.
-#
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #

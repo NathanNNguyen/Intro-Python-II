@@ -13,10 +13,22 @@ class Player:
     
     def movement(self, direction):
         if direction == 'n':
-            self.current_room = self.current_room.n_to
+            if self.current_room.n_to == None:
+                print("There isn't a way there")
+            else:
+                self.current_room = self.current_room.n_to
         elif direction == 's':
-            self.current_room = self.current_room.s_to
+            if self.current_room.s_to == None:
+                print("There isn't a way there")
+            else:
+                self.current_room = self.current_room.s_to
         elif direction == 'w':
-            self.current_room = self.current_room.w_to
+            if self.current_room.w_to == None:
+                print("There isn't a way there")
+            else:
+                self.current_room = self.current_room.w_to
         elif direction == 'e':
-            self.current_room = self.current_room.e_to
+            if self.current_room.e_to == None:
+                print("There isn't a way there")
+            else:
+                self.current_room = self.current_room.e_to
