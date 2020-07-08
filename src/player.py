@@ -31,15 +31,19 @@ class Player:
         print(f"You picked up an {item}")
 
     def drop_item(self, item):
-        self.inventory.remove(item)
-        print(f"You dropped an {item}")
+            self.inventory.remove(item)
+            print(f"You dropped an {item}")
     
-    def check_item(self):
+    def check_inventory(self):
         if len(self.inventory) > 0:
             for item in self.inventory:
                 print(f'You have {item} in your inventory')
         else:
-            print("You do not have anything in your inventory")
+            print("Nothing in your inventory right now!")
+    
+    def inspect(self):
+        for item in self.inventory:
+            print(f'{item}')
 
     # def movement(self, direction):
     #     if direction == 'n':

@@ -74,22 +74,27 @@ while True:
     if console == 'n':
         # move north
         player.move(console)
-        
     elif console == 's':
         # move north
         player.move(console)
-        
     elif console == 'w':
         # move north
         player.move(console)
-        
     elif console == 'e':
         # move north
         player.move(console)
     elif console == 't':
+        # take item
         player.take_item(player.location.item[0])
     elif console == 'd':
-        player.drop_item(player.inventory[0])
+        # drop item
+        if len(player.inventory) > 0:
+            player.drop_item(player.inventory[0])
+        else:
+            print("Your inventory is empty at the moment")
     elif console == 'i':
-        player.check_item()
+        # check inventory
+        player.check_inventory()
+    else:
+        print("Not sure what you meant there...Let's try again")
         
