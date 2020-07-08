@@ -1,27 +1,34 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", ['bow']),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ['sword']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", ['knife']),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ['sword']),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", ['gun']),
 }
 
+item = {
+    'sword': Item('Infinity Edge', 'Best of the best'),
+    'gun': Item('AWP', 'Eagle Eye'),
+    'knife': Item('Valyrian', 'White walker killer'),
+    'bow': Item('Crossbow', 'Dragon killer')
+}
 
 # Link rooms together
 
@@ -43,26 +50,46 @@ room['treasure'].s_to = room['narrow']
 user = input('What is your name: ')
 player = Player(user, room['outside'])
 print(f'Welcome to the game {player.name}! Make your movements carefully.')
+print('Use the following commands for the game:')
+print('[n] North [s] South [w] West [e] East [q] Quit')
+print('[i] Check inventory [t] Take item [d] Drop item')
 # Write a loop that:
 while True:
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
-    player.locate()
-    console = input('Choose your movements: [n] North [s] South [w] West [e] East [q] Quit \n')
-    decision = player.movement(console)
+    # print('\n')
+    print(player.location)
+    print(f'Available items: {player.location.item[0]}')
+
+# * Waits for user input and decides what to do.
+    console = input('\nCommand: ')
+
+# If the user enters "q", quit the game.
     if console == 'q':
         print('Thanks for playing!')
         break
-    elif decision == 'n':
-        print(f'Now you are in room {player.locate()}')
-    elif decision == 's':
-        print(f'Now you are in room {player.locate()}')
-    elif decision == 'w':
-        print(f'Now you are in room {player.locate()}')
-    elif decision == 'e':
-        print(f'Now you are in room {player.locate()}')
-# * Waits for user input and decides what to do.
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+    if console == 'n':
+        # move north
+        player.move(console)
+        
+    elif console == 's':
+        # move north
+        player.move(console)
+        
+    elif console == 'w':
+        # move north
+        player.move(console)
+        
+    elif console == 'e':
+        # move north
+        player.move(console)
+    elif console == 't':
+        player.take_item(player.location.item[0])
+    elif console == 'd':
+        player.drop_item(player.inventory[0])
+    elif console == 'i':
+        player.check_item()
+        
